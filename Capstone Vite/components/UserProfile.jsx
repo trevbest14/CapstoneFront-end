@@ -1,4 +1,5 @@
 import React from 'react';
+import Banner from './Banner';
 
 function UserProfile() {
   // Placeholder for user info and their contributions
@@ -6,6 +7,7 @@ function UserProfile() {
 
     return (
         <div>
+        <Banner isUserProfile={true} />
         <h1>{user.name}</h1>
         <h2>My Reviews</h2>
         <ul>

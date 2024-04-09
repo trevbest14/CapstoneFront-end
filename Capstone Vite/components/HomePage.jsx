@@ -1,4 +1,5 @@
 import React from 'react';
+import Banner from './Banner';
 
 function HomePage() {
   // Placeholder for movie list
@@ -6,6 +7,7 @@ function HomePage() {
 
     return (
         <div>
+        <Banner />
         <h1>Movie List</h1>
         {movies.map((movie) => (
             <div key={movie.id}>

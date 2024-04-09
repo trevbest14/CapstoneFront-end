@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Banner from './Banner';
 
 function Listings() {
   // Placeholder for the latest movies and reviews
@@ -12,11 +13,12 @@ function Listings() {
 
     return (
         <div>
-        <h1>Latest Movies</h1>
-        {latestMovies.map((movie) => (
-            <div key={movie.id} onClick={() => navigate(`/movies/${movie.id}`)} style={{cursor: "pointer"}}>
-            <h2>{movie.title}</h2>
-            <p>{movie.review}</p>
+            <Banner />
+            <h1>Latest Movies</h1>
+            {latestMovies.map((movie) => (
+                <div key={movie.id} onClick={() => navigate(`/movies/${movie.id}`)} style={{cursor: "pointer"}}>
+                <h2>{movie.title}</h2>
+                <p>{movie.review}</p>
             </div>
         ))}
         </div>
