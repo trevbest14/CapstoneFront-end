@@ -1,13 +1,11 @@
 import React from 'react';
-import Banner from './Banner';
-
+import Banner from './Banner.jsx';
 function HomePage() {
   // Placeholder for movie list
     const movies = [{ id: 1, title: "Movie Title", description: "Movie description..." }];
 
     return (
         <div>
-        <Banner />
         <h1>Movie List</h1>
         {movies.map((movie) => (
             <div key={movie.id}>
