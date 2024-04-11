@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Banner from './Banner.jsx';
+import './UserProfile.css';
 
 const UserProfile = () => {
   // Placeholder for user info and their contributions
