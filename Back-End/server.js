@@ -27,7 +27,7 @@ dotenv.config();
 
 const app = express();
 
-// Middleware to parse JSON bodies
+// Middleware to parse JSON bodies and more routes
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', movieRoutes);
