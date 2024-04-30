@@ -27,7 +27,7 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 // Endpoint to fetch and add a movie from The Movie DB to local database
-router.post('/', authenticate, async (req, res) => {
+router.post('/add-from-moviedb', async (req, res) => {
     const { movieId } = req.body;
     try {
         const movieData = await fetchMovieDetails(movieId);

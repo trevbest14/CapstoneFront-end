@@ -59,6 +59,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Define the port
 const PORT = process.env.PORT || 5000;
 
+const cors = require('cors'); // First, install cors with npm install cors
+app.use(cors()); // This enables CORS for all resources on your server
+
+
 // Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
