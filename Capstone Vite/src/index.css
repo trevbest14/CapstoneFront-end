@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +65,88 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #304b5e;
+  color: #e9f1f7;
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
 }
+
+header {
+  background-color: rgba(51, 53, 81, 0.7);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0; /* Removes default padding */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #646cff; 
+  color: #ffffff; 
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Extra space below the logo */
+}
+
+.logo {
+  height: 60px;
+  width: auto; /* Maintain aspect ratio */
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* Push down below header */
+}
+
+/* Additional responsiveness for smaller devices */
+@media (max-width: 600px) {
+  nav ul li {
+      margin: 0 8px;
+  }
+
+  header {
+      padding: 10px 0;
+  }
+}
+
+
+
