@@ -8,6 +8,7 @@ import AdminDashboard from '../components/AdminDashboard';
 import Listings from '../components/Listings';
 
 function App() {
+  console.log("App component loaded");
   return (
     <Router>
       <Routes>
@@ -17,7 +18,7 @@ function App() {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/whatsnew" element={<Listings />} /> {/* Route for the "What's New" page aka my listings page */}
-      </Routes>
+        </Routes>
     </Router>
   );
 }
