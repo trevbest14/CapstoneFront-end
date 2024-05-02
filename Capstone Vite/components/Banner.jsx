@@ -6,8 +6,7 @@ function Banner({ isUserProfile }) {
     return (
         <div className="banner" style={{ backgroundColor: '#28354f', color: '#a8adba' }}>
         <div className="logo-container">
-            {/* Adjust the path as necessary */}
-            <img src="/path-to-your-logo/logo.png" alt="Logo" className="logo" />
+        <img src="/components/rave.jpg" alt="Rave Reviews Logo" className="logo" />
         </div>
         <nav>
             <ul>
