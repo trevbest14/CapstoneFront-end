@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Banner({ isUserProfile }) {
+function Banner({ UserProfile }) {
     return (
         <div className="banner" style={{ backgroundColor: '#28354f', color: '#a8adba' }}>
         <div className="logo-container">
@@ -10,14 +10,14 @@ function Banner({ isUserProfile }) {
         <nav>
             <ul>
             <li><Link to="/">Home</Link></li>
-            {!isUserProfile && <>
+          <>
                 <li><Link to="/profile">Profile</Link></li>
                 <li><Link to="/search">Search</Link></li>
-                <li><Link to="/details">Details</Link></li>
+                
                 <li><Link to="/whatsnew">What's New</Link></li>
                 <li><Link to="/admin">Dashboard</Link></li>
                 <li><Link to="/login">Log In/Sign-Up</Link></li>
-            </>}
+            </>
             </ul>
         </nav>
         </div>

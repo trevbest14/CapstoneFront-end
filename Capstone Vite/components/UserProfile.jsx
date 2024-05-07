@@ -7,7 +7,7 @@ function UserProfile() {
 
     return (
         <div>
-        <Banner isUserProfile={true} />
+        <Banner />
         <h1>{user.name}</h1>
         <h2>My Reviews</h2>
         <ul>
