@@ -50,7 +50,7 @@ const Listings = () => {
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} className="movie-image"/>
                         <h2>{movie.title}</h2>
                         <p>Rating: {movie.vote_average}</p>
-                        <button onClick={() => handleToggleDescription(movie.id)}>Toggle Description</button>
+                        <button onClick={() => handleToggleDescription(movie.id)}>Read More</button>
                         {toggleDescription[movie.id] && <p>{movie.overview}</p>}
                     </div>
                 ))}
