@@ -6,6 +6,8 @@ import SearchResults from '../components/SearchResults';
 import UserProfile from '../components/UserProfile';
 import AdminDashboard from '../components/AdminDashboard';
 import Listings from '../components/Listings';
+import Login from '../components/Login'; // Import Login component
+import SignUp from '../components/SignUp'; // Import SignUp component
 
 function App() {
   console.log("App component loaded");
@@ -17,8 +19,10 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/whatsnew" element={<Listings />} /> {/* Route for the "What's New" page aka my listings page */}
-        </Routes>
+        <Route path="/whatsnew" element={<Listings />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} /> 
+      </Routes>
     </Router>
   );
 }
