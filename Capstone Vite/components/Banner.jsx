@@ -16,6 +16,7 @@ function Banner({ isUserProfile }) {
                 <li><Link to="/details">Details</Link></li>
                 <li><Link to="/whatsnew">What's New</Link></li>
                 <li><Link to="/admin">Dashboard</Link></li>
+                <li><Link to="/login">Log In/Sign-Up</Link></li>
             </>}
             </ul>
         </nav>
