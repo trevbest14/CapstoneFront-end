@@ -9,6 +9,15 @@ function SignUp() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    const toggleGenre = (genre) => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            favoriteGenres: prevFormData.favoriteGenres.includes(genre)
+                ? prevFormData.favoriteGenres.filter(g => g !== genre)
+                : [...prevFormData.favoriteGenres, genre]
+        }));
+    };
+
     const handleSignUp = async () => {
         setError('');
 
