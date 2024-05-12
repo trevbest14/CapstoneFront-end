@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Banner from './Banner';
+import Banner from './Banner';  // Assuming Banner is properly imported
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -9,31 +9,31 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
-        setError('');
-
         if (!username || !password) {
-            setError('Both username and password are required.');
+            setError('Please enter both username and password.');
             return;
         }
 
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             });
 
             const data = await response.json();
-            if (!response.ok) throw new Error(data.message);
+            if (!response.ok) {
+                throw new Error(data.message || 'Failed to login');
+            }
 
-            localStorage.setItem('authToken', data.token);
-            alert('Welcome!');
-            navigate('/profile');
+            localStorage.setItem('token', data.token);  // Store the token in localStorage
+            navigate('/profile');  // Redirect to profile page or dashboard
         } catch (error) {
-            console.error('Login Error:', error);
-            setError(error.message);
+            setError('Failed to login: ' + error.message);
         }
     };
+
+
 
     return (
         <div>

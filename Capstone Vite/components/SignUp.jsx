@@ -4,19 +4,15 @@ import Banner from './Banner';
 
 function SignUp() {
     const [formData, setFormData] = useState({
-        firstName: '', lastName: '', email: '', username: '', password: '', favoriteGenres: []
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        favoriteGenres: []
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
-    const toggleGenre = (genre) => {
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            favoriteGenres: prevFormData.favoriteGenres.includes(genre)
-                ? prevFormData.favoriteGenres.filter(g => g !== genre)
-                : [...prevFormData.favoriteGenres, genre]
-        }));
-    };
 
     const handleSignUp = async () => {
         setError('');
@@ -27,20 +23,41 @@ function SignUp() {
         }
 
         try {
-            const response = await fetch('/api/auth/register', {
+            const response = await fetch('http://localhost:3000/register', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(formData)
             });
 
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message);
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Registration failed');
+            }
 
             alert('Registration successful! Please log in.');
             navigate('/login');
         } catch (error) {
-            console.error('SignUp Error:', error);
-            setError(error.message);
+            console.error('SignUp Error:', error.message);
+            setError(error.message || 'Failed to register');
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === "favoriteGenres") {
+            setFormData(prevState => ({
+                ...prevState,
+                favoriteGenres: prevState.favoriteGenres.includes(value) ? 
+                    prevState.favoriteGenres.filter(g => g !== value) : 
+                    [...prevState.favoriteGenres, value]
+            }));
+        } else {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
         }
     };
 
@@ -49,16 +66,22 @@ function SignUp() {
             <Banner />
             <div style={{ padding: '20px' }}>
                 <h2>Sign Up for Rave Reviews</h2>
-                <input name="firstName" placeholder="First Name" value={formData.firstName} onChange={(e) => setFormData({...formData, firstName: e.target.value})} />
-                <input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={(e) => setFormData({...formData, lastName: e.target.value})} />
-                <input name="email" type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-                <input name="username" placeholder="Username" value={formData.username} onChange={(e) => setFormData({...formData, username: e.target.value})} />
-                <input name="password" type="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} />
+                <input name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
+                <input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+                <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+                <input name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
+                <input name="password" type="password" placeholder="Password" value={formData.password} onChange={handleChange} />
 
                 <h3>Favorite Genres</h3>
-                {['Action', 'Comedy', 'Documentary', 'Drama', 'Horror', 'Psychological', 'Romantic Comedy', 'Romance', 'Suspense', 'Thriller'].map((genre) => (
+                {['Action', 'Comedy', 'Drama', 'Horror', 'Thriller'].map(genre => (
                     <div key={genre}>
-                        <input type="checkbox" checked={formData.favoriteGenres.includes(genre)} onChange={() => toggleGenre(genre)} />
+                        <input 
+                            type="checkbox" 
+                            name="favoriteGenres"
+                            value={genre} 
+                            checked={formData.favoriteGenres.includes(genre)} 
+                            onChange={handleChange} 
+                        />
                         <label>{genre}</label>
                     </div>
                 ))}
