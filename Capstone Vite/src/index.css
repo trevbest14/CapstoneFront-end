@@ -136,6 +136,26 @@ main {
   align-items: center;
   padding-top: 100px; /* Push down below header */
 }
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-card {
+  width: calc(50% - 20px); /* Adjust width to fit two cards per row */
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) {
+  .movie-card {
+    width: calc(100% - 20px); /* Take full width on smaller screens */
+  }
+}
 
 /* Additional responsiveness for smaller devices */
 @media (max-width: 600px) {

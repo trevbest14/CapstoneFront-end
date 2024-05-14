@@ -44,10 +44,10 @@ const Listings = () => {
         <div>
             <Banner />
             <h1>Latest Movies</h1>
-            <div className="movies-container">
+            <div className="movies-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
                 {movies.map((movie, index) => (
-                    <div key={movie.id + '-' + index} className="movie-card">
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} className="movie-image"/>
+                    <div key={movie.id + '-' + index} className="movie-card" style={{width: 'calc(50% - 20px)', textAlign: 'center'}}>
+                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} style={{maxWidth: '100%', height: 'auto' }}/>
                         <h2>{movie.title}</h2>
                         <p>Rating: {movie.vote_average}</p>
                         <button onClick={() => handleToggleDescription(movie.id)}>Read More</button>
