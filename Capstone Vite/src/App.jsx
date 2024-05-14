@@ -12,7 +12,7 @@ import SignUp from '../components/SignUp'; // Import SignUp component
 function App() {
   console.log("App component loaded");
   return (
-    <Router>
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/details/:id" element={<ItemDetails />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} /> 
       </Routes>
-    </Router>
+
   );
 }
 
