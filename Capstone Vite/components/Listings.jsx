@@ -7,6 +7,8 @@ const Listings = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [error, setError] = useState('');
     const [toggleDescription, setToggleDescription] = useState({});
+    const [reviewText, setReviewText] = useState('');
+    const [showReviewBox, setShowReviewBox] = useState(false);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -40,6 +42,26 @@ const Listings = () => {
         console.log(`Toggled description for movie ID: ${id}`);
     };
 
+    const handleReviewInputChange = (event) => {
+        setReviewText(event.target.value);
+    };
+
+    const handleReviewSubmit = (movieId) => {
+        // Send a request to submit the review
+        // Assuming you have a function for submitting reviews
+        // You can use fetch or an API library like axios
+        console.log(`Submitting review for movie ID: ${movieId}, Text: ${reviewText}`);
+        // After submission, you may want to reset the review text and hide the review box
+        setReviewText('');
+        setShowReviewBox(false);
+    };
+
+    const handleLoginRedirect = () => {
+        // Redirect users to the login/signup page
+        console.log("Redirecting to login/signup page...");
+        // Use your routing mechanism to navigate to the login/signup page
+    };
+
     return (
         <div>
             <Banner />
@@ -52,6 +74,24 @@ const Listings = () => {
                         <p>Rating: {movie.vote_average}</p>
                         <button onClick={() => handleToggleDescription(movie.id)}>Read More</button>
                         {toggleDescription[movie.id] && <p>{movie.overview}</p>}
+
+                        <div>
+                            {showReviewBox ? (
+                                <div>
+                                    <textarea value={reviewText} onChange={handleReviewInputChange}></textarea>
+                                    <button onClick={() => handleReviewSubmit(movie.id)}>Submit Review</button>
+                                </div>
+                            ) : (
+                                <button onClick={() => {
+                                    if (isLoggedIn) {
+                                        setShowReviewBox(true);
+                                    } else {
+                                        handleLoginRedirect();
+                                    }
+                                }}>Leave a Review</button>
+                            )}
+                        </div>
+                        
                     </div>
                 ))}
                 {error && <p className="error">{error}</p>}
