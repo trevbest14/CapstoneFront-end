@@ -43,6 +43,7 @@ function SignUp() {
             setError(error.message);
         }
     };
+    
 
     return (
         <div>
