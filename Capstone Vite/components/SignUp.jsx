@@ -4,11 +4,17 @@ import Banner from './Banner';
 
 function SignUp() {
     const [formData, setFormData] = useState({
-        firstName: '', lastName: '', email: '', username: '', password: '', favoriteGenres: []
+        firstName: '',
+        lastName: '',
+        email: '',
+        username: '',
+        password: '',
+        favoriteGenres: []
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    // Toggle genre selection
     const toggleGenre = (genre) => {
         setFormData(prevFormData => ({
             ...prevFormData,
@@ -18,6 +24,7 @@ function SignUp() {
         }));
     };
 
+    // Handle form submission
     const handleSignUp = async () => {
         setError('');
 
@@ -27,23 +34,25 @@ function SignUp() {
         }
 
         try {
-            const response = await fetch('/api/auth/register', {
+            // Post request to server
+            const response = await fetch('/api/users/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
+            // Process response
             const data = await response.json();
             if (!response.ok) throw new Error(data.message);
 
             alert('Registration successful! Please log in.');
-            navigate('/login');
+            navigate('/login'); // Redirect to login page on successful registration
         } catch (error) {
             console.error('SignUp Error:', error);
             setError(error.message);
         }
     };
-    
+
 
     return (
         <div>
