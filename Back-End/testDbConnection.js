@@ -7,3 +7,8 @@ if (err) {
     console.log('Connection successful, current server time is:', res.rows[0].now);
 }
 });
+
+
+const crypto = require('crypto');
+const secret = crypto.randomBytes(64).toString('hex');
+console.log(secret);

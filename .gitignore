@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+# Add this to your .gitignore file
+.env
+
 
 # Editor directories and files
 .vscode/*

@@ -31,20 +31,29 @@ const pool = require('../db');  // Assuming this correctly connects to your Post
 
 router.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
+
+    // First, check if the username already exists
     try {
+        const existingUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        if (existingUser.rows.length > 0) {
+            return res.status(409).json({ message: 'Username already exists' });
+        }
+
+        // If no existing user, proceed with registration
         const hashedPassword = await bcrypt.hash(password, 10);
         const result = await pool.query(
-        'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *;',
-        [username, hashedPassword, email]
+            'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING id',
+            [username, hashedPassword, email]
         );
-        const user = result.rows[0];
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(201).json({ user, token, message: 'User registered successfully' });
+        const userId = result.rows[0].id;
+        const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ userId, token, message: 'User registered successfully' });
     } catch (error) {
-        console.error('Registration Error:', error.message);
+        console.error('Registration Error:', error);
         res.status(500).json({ message: 'Registration failed', error: error.message });
     }
-    });
+});
+
 
 // POST endpoint for user login
 router.post('/login', async (req, res) => {

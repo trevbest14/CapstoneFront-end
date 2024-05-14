@@ -85,7 +85,9 @@ app.listen(PORT, () => {
 });
 */
 // Load environment variables first
+// require('dotenv').config({ path: '/.env' });
 require('dotenv').config();
+console.log(process.env.DB_USER);
 
 // Initialize express app
 const app = express();
