@@ -12,6 +12,7 @@ function ItemDetails() {
           <p>{movie.description}</p>
           <p>Rating: {movie.rating}</p>
         </div>
+      
     );
 }
 
