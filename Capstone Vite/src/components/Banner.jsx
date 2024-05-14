@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import RAVE from './rave.jpg';
+
 
 function Banner({ UserProfile }) {
     return (
@@ -20,6 +22,7 @@ function Banner({ UserProfile }) {
             </>
             </ul>
         </nav>
+
         </div>
     );
 }

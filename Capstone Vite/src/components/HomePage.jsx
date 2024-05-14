@@ -1,6 +1,5 @@
 import React from 'react';
-import Banner from './Banner';
-
+import Banner from './Banner.jsx';
 function HomePage() {
     console.log("HomePage component loaded");
   // Placeholder for movie list
@@ -15,6 +14,7 @@ function HomePage() {
             <h2>{movie.title}</h2>
             <p>{movie.description}</p>
         </div>
+
         ))}
         </div>
     );
