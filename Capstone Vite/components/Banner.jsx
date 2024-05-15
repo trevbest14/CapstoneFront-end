@@ -5,9 +5,9 @@ import RAVE from './rave.jpg';
 
 function Banner({ UserProfile }) {
     return (
-        <div className="banner" style={{ backgroundColor: '#28354f', color: '#a8adba' }}>
-        <div className="logo-container">
-        <img src="/components/rave.jpg" alt="Rave Reviews Logo" className="logo" />
+        <div className="banner" style={{ backgroundColor: '#28354f', color: '#a8adba', padding:'10px', maxWidth:'auto' }}>
+        <div className="logo-container" style={{ width: '30%', maxWidth: '200px', margin: 'auto' }}>
+        <img src={RAVE} alt="Rave Reviews Logo" className="logo" style={{ maxWidth:'100%', height:'auto', }}/>
         </div>
         <nav>
             <ul>

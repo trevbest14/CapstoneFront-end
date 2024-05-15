@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Banner from './Banner';
 
-const Listings = () => {
+const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [error, setError] = useState('');
     const [toggleDescription, setToggleDescription] = useState({});
-
+    const [reviewText, setReviewText] = useState('');
+    const [showReviewBox, setShowReviewBox] = useState(false);
     useEffect(() => {
         const fetchMovies = async () => {
             const apiKey = import.meta.env.VITE_MOVIE_DB_API_KEY;
@@ -40,18 +41,54 @@ const Listings = () => {
         console.log(`Toggled description for movie ID: ${id}`);
     };
 
+    const handleReviewInputChange = (event) => {
+        setReviewText(event.target.value);
+    };
+
+    const handleReviewSubmit = (movieId) => {
+        // Send a request to submit the review
+        // Assuming you have a function for submitting reviews
+        // You can use fetch or an API library like axios
+        console.log(`Submitting review for movie ID: ${movieId}, Text: ${reviewText}`);
+        // After submission, you may want to reset the review text and hide the review box
+        setReviewText('');
+        setShowReviewBox(false);
+    };
+
+    const handleLoginRedirect = () => {
+        // Redirect users to the login/signup page
+        console.log("Redirecting to login/signup page...");
+        // Use your routing mechanism to navigate to the login/signup page
+    };
     return (
         <div>
             <Banner />
             <h1>Latest Movies</h1>
-            <div className="movies-container">
+            <div className="movies-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center'}}>
                 {movies.map((movie, index) => (
-                    <div key={movie.id + '-' + index} className="movie-card">
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} className="movie-image"/>
+                    <div key={movie.id + '-' + index} className="movie-card" style={{width: 'calc(50% - 20px)', textAlign: 'center', marginBottom: '20px'}}>
+                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} style={{maxWidth: '100%', height: 'auto' }}/>
                         <h2>{movie.title}</h2>
                         <p>Rating: {movie.vote_average}</p>
                         <button onClick={() => handleToggleDescription(movie.id)}>Read More</button>
                         {toggleDescription[movie.id] && <p>{movie.overview}</p>}
+                        <div>
+                            {showReviewBox ? (
+                                <div>
+                                    <textarea value={reviewText} onChange={handleReviewInputChange}></textarea>
+                                    <button onClick={() => handleReviewSubmit(movie.id)}>Submit Review</button>
+                                </div>
+                            ) : (
+                                <button onClick={() => {
+                                    if (isLoggedIn) {
+                                        setShowReviewBox(true);
+                                    } else {
+                                        handleLoginRedirect();
+                                    }
+                                }}>Leave a Review</button>
+                            )}
+                        </div>
+                        
                     </div>
                 ))}
                 {error && <p className="error">{error}</p>}
@@ -66,4 +103,4 @@ const Listings = () => {
     );
 };
 
-export default Listings;
+export default HomePage; 
