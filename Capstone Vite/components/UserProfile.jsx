@@ -8,12 +8,17 @@ function UserProfile() {
     useEffect(() => {
         // Check for the presence of a token and redirect if none is found
         if (!localStorage.getItem('authToken')) {
-            navigate('/login'); // Redirect to login if no token is present. Goal is to keep Profile only accessible to members
+            navigate('/login'); // Redirect to login if no token is present
             return;
         }
     }, [navigate]);
 
-    // replace w/ actual data from server
+    const handleLogout = () => {
+        localStorage.removeItem('authToken'); // Remove the token from local storage
+        navigate('/login'); // Redirect to the login page
+    };
+
+    // Replace with actual data from server
     const user = { id: 1, name: "John Doe", reviews: ["Review 1", "Review 2"], email: "johndoe@example.com", favoriteGenres: ["Drama", "Comedy"] };
 
     return (
@@ -33,9 +38,11 @@ function UserProfile() {
                     <li key={index}>{review}</li>
                 ))}
             </ul>
+            <button onClick={handleLogout} style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
+                Log Out
+            </button>
         </div>
     );
 }
 
 export default UserProfile;
-
