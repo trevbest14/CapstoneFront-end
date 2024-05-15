@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db'); 
+const { restart } = require('nodemon');
 
 // router.post('/register', async (req, res) => {
 //     const { username, password, email } = req.body;
@@ -28,7 +29,6 @@ const pool = require('../db');
 //         res.status(500).json({ message: 'Registration failed', error: error.message });
 //     }
 // });
-
 
 // // POST endpoint for user login
 // router.post('/login', async (req, res) => {
@@ -58,6 +58,10 @@ const pool = require('../db');
 // });
 
 // module.exports = router;
+
+router.get('/', async (req, res) => {
+    res.send({message: `Hello There`})
+})
 
 router.post('/register', async (req, res) => {
     const { username, password, email, firstName, lastName, favoriteGenres } = req.body;
@@ -124,3 +128,4 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+

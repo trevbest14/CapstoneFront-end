@@ -53,7 +53,6 @@ function SignUp() {
         }
     };
 
-
     return (
         <div>
             <Banner />

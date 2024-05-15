@@ -1,5 +1,4 @@
-// backend/middlewares/authenticate.js
-const authenticate = require('../middlewares/authenticate');
+// const authenticate = require('../middlewares/authenticate');
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
 

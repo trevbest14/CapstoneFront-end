@@ -1,10 +1,12 @@
 // Import required modules
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const authRouter = require('./routes/auth');
 const pool = require('./db'); // Ensure your db.js configures PostgreSQL correctly
+
+pool.connect();
 /*
 // Import required modules
 const express = require('express');
@@ -124,7 +126,6 @@ app.use((req, res, next) => {
     console.log('Incoming request:', req.method, req.path);
     next();
 });
-
 
 // basic error handler
 app.use((error, req, res, next) => {
