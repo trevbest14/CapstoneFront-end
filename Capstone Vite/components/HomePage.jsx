@@ -79,15 +79,18 @@ const HomePage = () => {
                                     <button onClick={() => handleReviewSubmit(movie.id)}>Submit Review</button>
                                 </div>
                             ) : (
-                                <button onClick={() => {
-                                    if (isLoggedIn) {
-                                        setShowReviewBox(true);
-                                    } else {
-                                        handleLoginRedirect();
-                                    }
-                                }}>Leave a Review</button>
-                            )}
-                        </div>
+                                <div>
+                        <input type="text" placeholder="Add a review..." style={{ marginTop: '10px', width: '150px' }}/>
+                        <button onClick={() => {
+                            if (isLoggedIn) {
+                                setShowReviewBox(true);
+                            } else {
+                                handleLoginRedirect();
+                            }
+                        }}>Leave a Review</button>
+                    </div>
+                )}
+            </div>
                         
                     </div>
                 ))}
@@ -104,3 +107,4 @@ const HomePage = () => {
 };
 
 export default HomePage; 
+

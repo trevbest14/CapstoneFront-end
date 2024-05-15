@@ -19,7 +19,7 @@ function UserProfile() {
     };
 
     // Replace with actual data from server
-    const user = { id: 1, name: "John Doe", reviews: ["Review 1", "Review 2"], email: "johndoe@example.com", favoriteGenres: ["Drama", "Comedy"] };
+    const user = { id: 1, name: "John Doe", reviews: ["Review 1: I love this movie", "Review 2: Great film"], email: "johndoe@example.com", favoriteGenres: ["Drama", "Comedy"] };
 
     return (
         <div>
